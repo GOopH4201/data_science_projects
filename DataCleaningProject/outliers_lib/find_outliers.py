@@ -98,4 +98,5 @@ def new_function(a, b):
     return np.log(a + b)
 
 if __name__ == "__main__":
+    # Some text what I added
     print("This is a library for DataFrames from pandas for cleaning DF from outliers and other things.")
