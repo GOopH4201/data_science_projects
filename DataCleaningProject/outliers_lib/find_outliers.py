@@ -94,5 +94,27 @@ def find_low_inf_columns(data, ratio=0.95, ignore=None):
     return low_information_cols
 
 
+def find_outliers_quantile(data, feature, left=0.01, right=0.99):
+    """Clearing a table of outliers using the quantile method, where 
+    data is discarded if it is less than 1 quantile or more than 99 quantile
+
+    Args:
+        data (pands.DataFrame): DataFrame with outliers.
+        feature (str): Column in which outliers are searched
+        left (float, optional): Left brush border multiplier. Defaults to 0.01.
+        right (float, optional): Right brush border multiplier. Defaults to 0.99.
+
+    Returns:
+        pandas.DataFrame: DataFrame of outliers
+        pandas.DataFrame: DataFrame without outliers
+    """
+    x = data[feature]
+    lowwer_bound = x.quantile(left)
+    upper_bount = x.quantile(right)
+    outliers = x[(x < lowwer_bound) | (x > upper_bount)]
+    cleaned = x[(x > lowwer_bound) & (x < upper_bount)]
+    return outliers, cleaned
+
+
 if __name__ == "__main__":
     print("This is a library for DataFrames from pandas for cleaning DF from outliers and other things.")
