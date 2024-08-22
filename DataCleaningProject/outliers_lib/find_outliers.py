@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-def outliers_iqr(data, feature, log_scale=False, left=1.5, right=1.5, add_one=True):
+def find_outliers_iqr(data, feature, log_scale=False, left=1.5, right=1.5, add_one=True):
     """Clearing a DataFrame of outliers using the Tukey or interquartile method
 
     Args:
@@ -29,7 +29,7 @@ def outliers_iqr(data, feature, log_scale=False, left=1.5, right=1.5, add_one=Tr
     return outliers, cleaned
 
 
-def outliers_z_score(data, feature, auto=False, log_scale=False, left=3, right=3, add_one=True):
+def find_outliers_z_score(data, feature, auto=False, log_scale=False, left=3, right=3, add_one=True):
     """Clearing a DataFrame of outliers using the z-score method
 
     Args:
